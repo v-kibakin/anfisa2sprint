@@ -21,6 +21,8 @@ class IceCreamAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
 
 
+admin.site.empty_value_display = 'Не задано'
+
 admin.site.register(IceCream, IceCreamAdmin)
 
 admin.site.register(Category)
