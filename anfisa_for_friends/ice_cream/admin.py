@@ -16,9 +16,11 @@ class IceCreamAdmin(admin.ModelAdmin):
         'is_on_main',
         'category'
     )
-    search_fields = ('title',) 
+    search_fields = ('title',)
     list_filter = ('category',)
     list_display_links = ('title',)
+
+    filter_horizontal = ('toppings',)
 
 
 admin.site.empty_value_display = 'Не задано'
