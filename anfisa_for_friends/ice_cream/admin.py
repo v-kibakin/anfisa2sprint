@@ -2,6 +2,23 @@ from django.contrib import admin
 from .models import Category, Wrapper, Topping, IceCream
 
 
+admin.site.empty_value_display = 'Не задано'
+
+
+class IceCreamInline(admin.StackedInline):
+    model = IceCream
+    extra = 0
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    inlines = (
+        IceCreamInline,
+    )
+    list_display = (
+        'title',
+    )
+
+
 class IceCreamAdmin(admin.ModelAdmin):
     list_display = (
         'title',
@@ -22,23 +39,6 @@ class IceCreamAdmin(admin.ModelAdmin):
 
     filter_horizontal = ('toppings',)
 
-
-# Подготавливаем модель IceCream для вставки на страницу другой модели.
-class IceCreamInline(admin.StackedInline):
-    model = IceCream
-    extra = 0
-
-
-class CategoryAdmin(admin.ModelAdmin):
-    inlines = (
-        IceCreamInline,
-    )
-    list_display = (
-        'title',
-    )
-
-
-admin.site.empty_value_display = 'Не задано'
 
 admin.site.register(IceCream, IceCreamAdmin)
 admin.site.register(Category, CategoryAdmin)
