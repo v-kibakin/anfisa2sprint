@@ -23,10 +23,25 @@ class IceCreamAdmin(admin.ModelAdmin):
     filter_horizontal = ('toppings',)
 
 
+# Подготавливаем модель IceCream для вставки на страницу другой модели.
+class IceCreamInline(admin.StackedInline):
+    model = IceCream
+    extra = 0
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    inlines = (
+        IceCreamInline,
+    )
+    list_display = (
+        'title',
+    )
+
+
 admin.site.empty_value_display = 'Не задано'
 
 admin.site.register(IceCream, IceCreamAdmin)
+admin.site.register(Category, CategoryAdmin)
 
-admin.site.register(Category)
 admin.site.register(Wrapper)
 admin.site.register(Topping)
