@@ -21,8 +21,8 @@ class Topping(PublishedModel):
     slug = models.SlugField('Слаг', max_length=64, unique=True)
 
     class Meta:
-        verbose_name = 'топинг'
-        verbose_name_plural = 'Топинги'
+        verbose_name = 'топпинг'
+        verbose_name_plural = 'Топпинги'
 
     def __str__(self):
         return self.title
